@@ -12,8 +12,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class RegisterController {
-    public static boolean validatingAllInput(String nama, Object lahir, Object buat, String kelamin, File fotoMember){
-        if(nama.isEmpty() || lahir == null || buat == null || kelamin.isEmpty() || fotoMember == null){
+    public static boolean validatingAllInput(String nama, Object lahir, Object buat, Object kelamin, File fotoMember){
+        if(nama.isEmpty() || lahir == null || buat == null || kelamin == null || fotoMember == null){
             return false;
         }else{
             return true;
@@ -37,8 +37,9 @@ public class RegisterController {
             tempData = new Member(nama, JenisKelamin.WANITA,fotoMember.getAbsolutePath(), (Date) lahir, (Date) buat, expDate);
         }
 
-        String query = "INSERT INTO data_penduduk VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO members VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
+            System.out.println("hihi");
             PreparedStatement stmt = conn.con.prepareStatement(query);
             TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 

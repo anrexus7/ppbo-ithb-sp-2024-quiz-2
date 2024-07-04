@@ -13,14 +13,14 @@ public class GetDataMember {
     public static int getMemberNumber() {
         DatabaseHandler conn = new DatabaseHandler();
         conn.connect();
-        String query = "SELECT idMember FROM Members ORDER BY tanggalBuat DESC LIMIT 1";
+        String query = "SELECT idMember FROM Members ORDER BY idMember DESC LIMIT 1";
         int i=0;
 
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                i = rs.getInt("user_id");
+                i = rs.getInt("idMember");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -39,7 +39,7 @@ public class GetDataMember {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 user.setNama(rs.getString("nama"));
-                switch (rs.getString("jenisKelamin")) {
+                switch (rs.getString("kelamin")) {
                     case "PRIA":
                         user.setKelamin(JenisKelamin.PRIA);
                         break;
@@ -47,7 +47,7 @@ public class GetDataMember {
                         user.setKelamin(JenisKelamin.WANITA);
                         break;
                 }
-                user.setFotoMember(rs.getString("fotoMember"));
+                user.setFotoMember(rs.getString("foto"));
                 user.setTanggalLahir(rs.getDate("tanggalLahir"));
                 user.setTanggalBuat(rs.getDate("tanggalBuat"));
                 user.setTanggalExp(rs.getDate("tanggalExp"));

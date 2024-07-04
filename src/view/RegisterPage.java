@@ -101,6 +101,7 @@ public class RegisterPage extends JFrame implements ActionListener {
         button.setBounds(10, 100, 200, 40);
         button.setEnabled(true);
         button.setVisible(true);
+        button.addActionListener(this);
 
         return button;
     }
@@ -146,15 +147,19 @@ public class RegisterPage extends JFrame implements ActionListener {
                 if(!RegisterController.validatingAllInput(fieldNama.getText(),
                 fieldLahir.getModel().getValue(),
                 fieldBuat.getModel().getValue(),
-                fieldKelamin.getSelection().getActionCommand(),
+                fieldKelamin.getSelection(),
                 fieldFoto.getSelectedFile())){
                 JOptionPane.showMessageDialog(null, "Field masih ada yang kosong !", "Error", JOptionPane.ERROR_MESSAGE);
                 }else{
+                    System.out.println("haha");
                     if(RegisterController.registering(fieldNama.getText(),
                             fieldLahir.getModel().getValue(),
                             fieldBuat.getModel().getValue(),
                             fieldKelamin.getSelection().getActionCommand(),
                             fieldFoto.getSelectedFile())){
+
+                        System.out.println("haha");
+
                         int id = GetDataMember.getMemberNumber();
                         new ViewPage(id);
                         this.dispose();

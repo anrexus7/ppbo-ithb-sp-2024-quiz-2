@@ -59,6 +59,8 @@ public class HomePage extends JFrame implements ActionListener {
                 this.dispose();
                 break;
             case "View Member":
+                this.dispose();
+                new SearchPage();
                 break;
         }
         System.out.println(command);
